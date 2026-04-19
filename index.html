@@ -1,0 +1,908 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Rajesh Kamalanathan — Engineering Leader</title>
+<meta name="description" content="Engineering leader building AI-native platforms at production scale. 15 years in FinTech, payments, and mutual funds." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:        #0a0d12;          /* page bg */
+    --ink-2:      #0f141b;          /* card bg */
+    --ink-3:      #161c25;          /* hover / divider */
+    --line:       rgba(255,255,255,.08);
+    --line-2:     rgba(255,255,255,.14);
+    --bone:       #ece7df;          /* primary text */
+    --bone-2:     #b9b3a8;          /* secondary text */
+    --bone-3:     #6e6a62;          /* tertiary / labels */
+    --accent:     #d2a25c;          /* warm ochre */
+    --accent-dim: #8a6a3a;
+    --good:       #6fa776;
+
+    --serif: "Fraunces", "Iowan Old Style", "Apple Garamond", Georgia, serif;
+    --sans:  "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --mono:  "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+    --max: 1200px;
+    --gutter: clamp(20px, 4vw, 56px);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--ink);color:var(--bone);font-family:var(--sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  body{
+    background:
+      radial-gradient(1200px 600px at 85% -10%, rgba(210,162,92,.06), transparent 60%),
+      radial-gradient(900px 500px at -10% 30%, rgba(120,160,210,.04), transparent 60%),
+      var(--ink);
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--accent);color:var(--ink)}
+
+  /* ---------- Layout primitives ---------- */
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gutter)}
+  .rule{height:1px;background:var(--line);width:100%}
+
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:11px;
+    font-weight:500;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--bone-3);
+    display:inline-flex;align-items:center;gap:10px;
+  }
+  .eyebrow::before{
+    content:"";width:18px;height:1px;background:var(--accent);display:inline-block;
+  }
+
+  .section-num{
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--bone-3);
+    letter-spacing:.1em;
+  }
+
+  /* ---------- Top nav ---------- */
+  nav.top{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    backdrop-filter:saturate(140%) blur(14px);
+    -webkit-backdrop-filter:saturate(140%) blur(14px);
+    background:rgba(10,13,18,.72);
+    border-bottom:1px solid transparent;
+    transition:border-color .3s ease, background .3s ease;
+  }
+  nav.top.scrolled{border-bottom-color:var(--line);background:rgba(10,13,18,.85)}
+  nav.top .inner{
+    max-width:var(--max);margin:0 auto;
+    padding:14px var(--gutter);
+    display:flex;align-items:center;justify-content:space-between;gap:24px;
+  }
+  .brand{
+    display:flex;align-items:center;gap:12px;font-family:var(--serif);font-weight:500;font-size:17px;letter-spacing:-.01em;
+  }
+  .monogram{
+    width:30px;height:30px;border-radius:50%;
+    border:1px solid var(--line-2);
+    display:grid;place-items:center;
+    font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--accent);
+    background:var(--ink-2);
+  }
+  nav.top ul{list-style:none;display:flex;gap:32px;margin:0;padding:0;font-size:13.5px;color:var(--bone-2)}
+  nav.top ul a{position:relative;padding:6px 0;transition:color .2s ease}
+  nav.top ul a:hover{color:var(--bone)}
+  nav.top ul a::after{
+    content:"";position:absolute;left:0;right:100%;bottom:0;height:1px;background:var(--accent);
+    transition:right .25s ease;
+  }
+  nav.top ul a:hover::after{right:0}
+  nav.top .cta{
+    font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;
+    padding:9px 16px;border:1px solid var(--line-2);border-radius:999px;color:var(--bone);
+    transition:all .2s ease;
+  }
+  nav.top .cta:hover{border-color:var(--accent);color:var(--accent)}
+  @media (max-width:760px){nav.top ul{display:none}}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:160px var(--gutter) 100px;
+    max-width:var(--max);margin:0 auto;
+    position:relative;
+  }
+  .hero .meta{
+    display:flex;align-items:center;gap:18px;margin-bottom:48px;
+    font-family:var(--mono);font-size:12px;color:var(--bone-3);letter-spacing:.05em;
+  }
+  .hero .meta .dot{width:6px;height:6px;border-radius:50%;background:var(--good);box-shadow:0 0 0 4px rgba(111,167,118,.15)}
+  .hero h1{
+    font-family:var(--serif);
+    font-weight:300;
+    font-size:clamp(44px, 7.6vw, 108px);
+    line-height:.96;
+    letter-spacing:-.035em;
+    margin:0;
+    color:var(--bone);
+    font-variation-settings: "opsz" 144;
+  }
+  .hero h1 em{font-style:italic;font-weight:400;color:var(--accent)}
+  .hero h1 .lead{display:block}
+  .hero h1 .lead-2{display:block;color:var(--bone-2)}
+  .hero .sub{
+    margin-top:48px;
+    display:grid;grid-template-columns: 1fr 1.4fr;gap:60px;align-items:start;
+    border-top:1px solid var(--line);padding-top:40px;
+  }
+  .hero .sub .left{display:flex;flex-direction:column;gap:24px}
+  .hero .sub .left .role{
+    font-family:var(--serif);font-size:18px;font-weight:400;color:var(--bone);font-style:italic;
+  }
+  .hero .sub .left .where{
+    font-size:13px;color:var(--bone-3);font-family:var(--mono);letter-spacing:.04em;
+  }
+  .hero .sub p{
+    margin:0;font-size:18px;line-height:1.6;color:var(--bone-2);max-width:60ch;
+    text-wrap:pretty;
+  }
+  @media (max-width:820px){
+    .hero{padding-top:130px}
+    .hero .sub{grid-template-columns:1fr;gap:24px}
+  }
+
+  /* hero stat strip */
+  .stat-strip{
+    margin-top:80px;
+    display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  }
+  .stat-strip > div{
+    padding:28px 28px 28px 0;
+    border-right:1px solid var(--line);
+  }
+  .stat-strip > div:last-child{border-right:none;padding-right:0}
+  .stat-strip .n{
+    font-family:var(--serif);font-weight:400;font-size:44px;line-height:1;color:var(--bone);
+    letter-spacing:-.02em;
+    font-variation-settings:"opsz" 144;
+  }
+  .stat-strip .n .unit{font-size:22px;color:var(--accent);margin-left:2px}
+  .stat-strip .l{
+    margin-top:10px;font-size:12.5px;color:var(--bone-3);font-family:var(--mono);letter-spacing:.04em;
+    text-transform:uppercase;
+  }
+  @media (max-width:760px){
+    .stat-strip{grid-template-columns:repeat(2,1fr)}
+    .stat-strip > div{padding:20px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .stat-strip > div:nth-child(2n){border-right:none}
+    .stat-strip > div:nth-last-child(-n+2){border-bottom:none}
+  }
+
+  /* ---------- Section heading ---------- */
+  section.s{
+    padding:120px var(--gutter);
+    max-width:var(--max);margin:0 auto;
+  }
+  section.s > header{
+    display:grid;grid-template-columns: 180px 1fr;gap:40px;
+    margin-bottom:60px;align-items:start;
+  }
+  section.s > header .nm{display:flex;flex-direction:column;gap:14px}
+  section.s > header h2{
+    font-family:var(--serif);font-weight:300;font-size:clamp(34px,4.4vw,56px);line-height:1.05;letter-spacing:-.02em;
+    margin:0;max-width:18ch;color:var(--bone);
+    font-variation-settings:"opsz" 144;
+  }
+  section.s > header h2 em{font-style:italic;color:var(--accent);font-weight:400}
+  @media (max-width:820px){
+    section.s{padding:80px var(--gutter)}
+    section.s > header{grid-template-columns:1fr;gap:18px}
+  }
+
+  /* ---------- About / Philosophy ---------- */
+  .about-grid{
+    display:grid;grid-template-columns: 1fr 1fr;gap:60px;
+  }
+  .about-grid p{
+    font-size:18px;line-height:1.65;color:var(--bone-2);text-wrap:pretty;margin:0 0 1.2em;
+  }
+  .about-grid p strong{color:var(--bone);font-weight:500}
+  .about-grid .pull{
+    border-left:2px solid var(--accent);
+    padding:6px 0 6px 22px;
+    font-family:var(--serif);
+    font-size:24px;line-height:1.3;color:var(--bone);
+    font-style:italic;font-weight:400;
+    margin:30px 0;
+    text-wrap:balance;
+  }
+  @media (max-width:820px){.about-grid{grid-template-columns:1fr;gap:30px}}
+
+  .principles{
+    margin-top:30px;
+    display:grid;grid-template-columns:repeat(3,1fr);gap:0;
+    border-top:1px solid var(--line);
+  }
+  .principles > div{
+    padding:36px 30px 36px 0;
+    border-right:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .principles > div:nth-child(3n){border-right:none;padding-right:0}
+  .principles > div:nth-last-child(-n+3){border-bottom:none}
+  .principles .num{font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:.1em}
+  .principles h4{
+    margin:14px 0 10px;
+    font-family:var(--serif);font-weight:400;font-size:22px;line-height:1.2;color:var(--bone);letter-spacing:-.01em;
+  }
+  .principles p{margin:0;font-size:14.5px;color:var(--bone-2);line-height:1.55;text-wrap:pretty}
+  @media (max-width:820px){
+    .principles{grid-template-columns:1fr}
+    .principles > div{border-right:none;padding:24px 0}
+    .principles > div:last-child{border-bottom:none}
+  }
+
+  /* ---------- Experience timeline ---------- */
+  .timeline{display:flex;flex-direction:column}
+  .role{
+    display:grid;grid-template-columns: 220px 1fr 200px;gap:40px;
+    padding:32px 0;border-top:1px solid var(--line);
+    align-items:start;
+    transition:background .25s ease;
+  }
+  .role:last-child{border-bottom:1px solid var(--line)}
+  .role:hover{background:rgba(255,255,255,.012)}
+  .role .when{font-family:var(--mono);font-size:12px;color:var(--bone-3);letter-spacing:.04em}
+  .role .body h3{
+    margin:0 0 6px;font-family:var(--serif);font-weight:400;font-size:24px;letter-spacing:-.01em;color:var(--bone);
+  }
+  .role .body .co{
+    font-size:14px;color:var(--accent);font-family:var(--mono);letter-spacing:.04em;
+  }
+  .role .body p{margin:14px 0 0;font-size:15px;color:var(--bone-2);max-width:60ch;line-height:1.55;text-wrap:pretty}
+  .role .stack{
+    display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end;
+  }
+  .role .stack span{
+    font-family:var(--mono);font-size:11px;color:var(--bone-3);
+    padding:4px 10px;border:1px solid var(--line);border-radius:3px;
+    letter-spacing:.02em;
+  }
+  @media (max-width:820px){
+    .role{grid-template-columns:1fr;gap:14px}
+    .role .stack{justify-content:flex-start}
+  }
+
+  /* ---------- Projects ---------- */
+  .projects{display:flex;flex-direction:column;gap:0}
+  .project{
+    display:grid;grid-template-columns: 80px 1fr 1.4fr;gap:50px;
+    padding:60px 0;
+    border-top:1px solid var(--line);
+    align-items:start;
+    position:relative;
+  }
+  .projects .project:last-child{border-bottom:1px solid var(--line)}
+  .project .idx{
+    font-family:var(--serif);font-weight:300;font-size:60px;line-height:1;color:var(--bone-3);
+    font-variation-settings:"opsz" 144;
+    transition:color .3s ease;
+  }
+  .project:hover .idx{color:var(--accent)}
+  .project .head h3{
+    margin:0 0 10px;font-family:var(--serif);font-weight:400;font-size:30px;line-height:1.15;letter-spacing:-.015em;color:var(--bone);
+    text-wrap:balance;
+  }
+  .project .head .tag{
+    font-family:var(--mono);font-size:11.5px;color:var(--bone-3);letter-spacing:.06em;text-transform:uppercase;
+  }
+  .project .head .tag .acc{color:var(--accent)}
+  .project .body p{margin:0 0 18px;font-size:15.5px;line-height:1.65;color:var(--bone-2);text-wrap:pretty}
+  .project .body .stack{
+    display:flex;flex-wrap:wrap;gap:6px;margin-top:18px;
+  }
+  .project .body .stack span{
+    font-family:var(--mono);font-size:11px;color:var(--bone-2);
+    padding:5px 10px;border:1px solid var(--line);border-radius:3px;background:rgba(255,255,255,.015);
+  }
+  @media (max-width:900px){
+    .project{grid-template-columns:1fr;gap:18px;padding:42px 0}
+    .project .idx{font-size:42px}
+  }
+
+  /* ---------- Skills ---------- */
+  .skills{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+    border-top:1px solid var(--line);
+  }
+  .skill-col{
+    padding:36px 28px 36px 0;
+    border-right:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .skill-col:nth-child(4n){border-right:none;padding-right:0}
+  .skill-col:nth-last-child(-n+4){border-bottom:none}
+  .skill-col h5{
+    margin:0 0 18px;font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;font-weight:500;
+  }
+  .skill-col ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+  .skill-col li{font-size:14.5px;color:var(--bone-2);font-family:var(--sans)}
+  .skill-col li.lead{color:var(--bone);font-family:var(--serif);font-size:18px;font-style:italic;font-weight:400;margin-bottom:6px}
+  @media (max-width:900px){
+    .skills{grid-template-columns:repeat(2,1fr)}
+    .skill-col{border-right:1px solid var(--line);padding:28px 24px 28px 0}
+    .skill-col:nth-child(2n){border-right:none;padding-right:0}
+    .skill-col:nth-last-child(-n+2){border-bottom:none}
+  }
+  @media (max-width:540px){
+    .skills{grid-template-columns:1fr}
+    .skill-col{border-right:none !important;padding:24px 0;border-bottom:1px solid var(--line) !important}
+    .skill-col:last-child{border-bottom:none !important}
+  }
+
+  /* ---------- Contact ---------- */
+  .contact{
+    padding:140px var(--gutter) 90px;
+    max-width:var(--max);margin:0 auto;
+  }
+  .contact h2{
+    font-family:var(--serif);font-weight:300;font-size:clamp(48px, 8vw, 116px);line-height:.98;letter-spacing:-.035em;margin:0;
+    color:var(--bone);
+    font-variation-settings:"opsz" 144;
+    text-wrap:balance;
+    max-width:14ch;
+  }
+  .contact h2 em{font-style:italic;color:var(--accent);font-weight:400}
+  .contact .row{
+    margin-top:60px;
+    display:grid;grid-template-columns: 1.2fr 1fr;gap:60px;
+    border-top:1px solid var(--line);padding-top:40px;
+  }
+  .contact .actions{display:flex;flex-direction:column;gap:14px;align-items:flex-start}
+  .contact .actions a.primary{
+    display:inline-flex;align-items:center;gap:14px;
+    font-family:var(--serif);font-size:22px;color:var(--ink);background:var(--accent);
+    padding:18px 26px;border-radius:999px;
+    transition:transform .2s ease, background .2s ease;
+    font-style:italic;font-weight:400;
+  }
+  .contact .actions a.primary:hover{background:var(--bone);transform:translateY(-1px)}
+  .contact .actions a.primary svg{transition:transform .25s ease}
+  .contact .actions a.primary:hover svg{transform:translate(4px,-4px)}
+  .contact .actions a.ghost{
+    font-family:var(--mono);font-size:13px;letter-spacing:.06em;color:var(--bone-2);text-transform:uppercase;
+    padding:14px 22px;border:1px solid var(--line-2);border-radius:999px;
+    transition:all .2s ease;
+  }
+  .contact .actions a.ghost:hover{border-color:var(--accent);color:var(--accent)}
+  .contact .links{display:flex;flex-direction:column;gap:0}
+  .contact .links a{
+    display:flex;align-items:baseline;justify-content:space-between;gap:18px;
+    padding:18px 0;border-bottom:1px solid var(--line);
+    transition:padding .25s ease, color .2s ease;
+  }
+  .contact .links a:first-child{border-top:1px solid var(--line)}
+  .contact .links a:hover{padding-left:8px;color:var(--accent)}
+  .contact .links .label{font-family:var(--mono);font-size:11px;color:var(--bone-3);letter-spacing:.12em;text-transform:uppercase}
+  .contact .links .val{font-family:var(--serif);font-size:18px;font-style:italic;color:var(--bone)}
+  .contact .links a:hover .val{color:var(--accent)}
+  @media (max-width:820px){.contact .row{grid-template-columns:1fr;gap:32px}}
+
+  /* ---------- Footer ---------- */
+  footer{
+    border-top:1px solid var(--line);padding:30px var(--gutter);
+    max-width:var(--max);margin:0 auto;
+    display:flex;justify-content:space-between;gap:20px;
+    font-family:var(--mono);font-size:11.5px;color:var(--bone-3);letter-spacing:.04em;
+  }
+  @media (max-width:560px){footer{flex-direction:column}}
+
+  /* ---------- Reveal animation ---------- */
+  .reveal{opacity:0;transform:translateY(14px);transition:opacity .8s ease, transform .8s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  /* keyboard focus */
+  a:focus-visible, button:focus-visible{outline:1px solid var(--accent);outline-offset:3px;border-radius:3px}
+</style>
+</head>
+<body>
+
+<nav class="top" id="topnav">
+  <div class="inner">
+    <a href="#top" class="brand">
+      <span class="monogram">RK</span>
+      <span>Rajesh Kamalanathan</span>
+    </a>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#philosophy">Philosophy</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#skills">Skills</a></li>
+    </ul>
+    <a class="cta" href="#contact">Get in touch</a>
+  </div>
+</nav>
+
+<!-- ============================== HERO ============================== -->
+<header class="hero" id="top">
+  <div class="meta">
+    <span class="dot"></span>
+    <span>Available for AI-platform leadership conversations</span>
+    <span style="color:var(--line-2)">·</span>
+    <span>Chennai, India</span>
+  </div>
+
+  <h1 class="reveal">
+    <span class="lead">Engineering the</span>
+    <span class="lead"><em>AI&nbsp;era</em>—from</span>
+    <span class="lead-2">architecture to</span>
+    <span class="lead-2">acceleration.</span>
+  </h1>
+
+  <div class="sub">
+    <div class="left">
+      <span class="eyebrow">Currently</span>
+      <div class="role">Senior Engineering Manager,<br/>CAMS&nbsp;AI</div>
+      <div class="where">Cloud-native platform · Vertex AI · GraphQL · 99.99% uptime</div>
+    </div>
+    <p>
+      Fifteen years building production systems in FinTech, payments and mutual funds — now leading
+      cloud-native AI platform engineering. I design the architecture, ship the migration, and build
+      the team that runs it. Lately, I'm encoding engineering management itself as autonomous agent
+      pipelines.
+    </p>
+  </div>
+
+  <div class="stat-strip">
+    <div>
+      <div class="n">15<span class="unit">+ yrs</span></div>
+      <div class="l">FinTech &amp; payments</div>
+    </div>
+    <div>
+      <div class="n">99.99<span class="unit">%</span></div>
+      <div class="l">Production uptime</div>
+    </div>
+    <div>
+      <div class="n">M<span class="unit">/day</span></div>
+      <div class="l">Transactions served</div>
+    </div>
+    <div>
+      <div class="n">5<span class="unit"> agents</span></div>
+      <div class="l">Autonomous EM stack</div>
+    </div>
+  </div>
+</header>
+
+<!-- ============================== ABOUT ============================== -->
+<section class="s" id="about">
+  <header>
+    <div class="nm">
+      <span class="section-num">01 — About</span>
+    </div>
+    <h2>An engineer who learned to lead, leading the shift to <em>AI-native</em> systems.</h2>
+  </header>
+
+  <div class="about-grid">
+    <div>
+      <p>
+        I started in <strong>medical imaging</strong> at Siemens — angioplasty software where a wrong
+        frame was unacceptable. That bias toward correctness followed me through
+        <strong>PayPal–eBay payment integrations</strong> at CSC, a decade across HealthCare and
+        FinTech at HCL, and into the heart of India's payments stack at <strong>Pine Labs</strong>,
+        where I led the UPI AutoPay subscription platform.
+      </p>
+      <p>
+        Today at <strong>CAMS AI</strong> I lead the re-architecture of the Mutual Fund RTA
+        platform onto Google Cloud — GKE, Vertex AI, GraphQL and gRPC — serving millions of daily
+        transactions for one of the largest registry &amp; transfer agents in the country.
+      </p>
+    </div>
+    <div>
+      <div class="pull">
+        I don't manage AI teams. I build AI-native engineering systems — and I encode my own
+        management workflow as one of them.
+      </div>
+      <p>
+        Outside the day job I build with <strong>Claude Code, MCP, and CrewAI</strong> —
+        multi-agent scrum systems, legacy modernisation pipelines, and a five-agent EM
+        automation stack that handles commit analysis, blocker detection and weekly comms.
+        Production-grade tooling. No frameworks where they don't earn their keep.
+      </p>
+      <p style="color:var(--bone-3);font-size:14px;margin-top:24px">
+        B.Tech, Computer Science — SASTRA University. English &amp; Tamil.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== PHILOSOPHY ============================== -->
+<section class="s" id="philosophy">
+  <header>
+    <div class="nm">
+      <span class="section-num">02 — How I work</span>
+    </div>
+    <h2>Six principles I lead by.</h2>
+  </header>
+
+  <div class="principles">
+    <div>
+      <div class="num">01</div>
+      <h4>Architecture is a leadership act.</h4>
+      <p>The system you draw decides what your team can ship for the next two years. I treat design reviews as the highest-leverage hour in the week.</p>
+    </div>
+    <div>
+      <div class="num">02</div>
+      <h4>Ship under load, not in isolation.</h4>
+      <p>Migrations get validated against the legacy system in parallel — continuously. Zero data loss is a process, not a hope.</p>
+    </div>
+    <div>
+      <div class="num">03</div>
+      <h4>Encode the toil.</h4>
+      <p>If a task repeats weekly, it's a candidate for an agent. EM bandwidth belongs to high-judgement decisions, not to status compilation.</p>
+    </div>
+    <div>
+      <div class="num">04</div>
+      <h4>Compliance is a feature.</h4>
+      <p>FinTech taught me to design for audit, mandate flow, and recovery from day one — not to retrofit them when regulators ask.</p>
+    </div>
+    <div>
+      <div class="num">05</div>
+      <h4>Frameworks earn their keep.</h4>
+      <p>I'll reach for Spring Boot or Vertex AI without flinching — and just as readily build a multi-agent orchestrator from scratch when no framework fits.</p>
+    </div>
+    <div>
+      <div class="num">06</div>
+      <h4>Lead AI-natively.</h4>
+      <p>The leaders who'll matter in this decade aren't the ones managing AI teams. They're the ones whose own workflow is built with AI from the inside out.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== EXPERIENCE ============================== -->
+<section class="s" id="experience">
+  <header>
+    <div class="nm">
+      <span class="section-num">03 — Experience</span>
+    </div>
+    <h2>Sixteen years, five companies, one through-line: <em>systems that handle real money.</em></h2>
+  </header>
+
+  <div class="timeline">
+    <div class="role">
+      <div class="when">Aug 2024 — Present<br/><span style="color:var(--accent)">Current</span></div>
+      <div class="body">
+        <h3>Senior Engineering Manager</h3>
+        <div class="co">CAMS AI · Chennai</div>
+        <p>Leading the cloud-native re-architecture of the Mutual Fund RTA platform onto GCP — GKE, Vertex AI, Pub/Sub and BigQuery. Built and shipped GraphQL, gRPC and REST APIs. 99.99% uptime through the entire migration window.</p>
+      </div>
+      <div class="stack">
+        <span>GCP</span><span>Vertex AI</span><span>GraphQL</span><span>Java</span><span>Apollo</span>
+      </div>
+    </div>
+
+    <div class="role">
+      <div class="when">May 2022 — Aug 2023</div>
+      <div class="body">
+        <h3>Module Lead</h3>
+        <div class="co">Pine Labs</div>
+        <p>End-to-end design and delivery of the UPI AutoPay subscription system on top of the Plural Payment Gateway. Mandate, intent, collect, recurring execution and failure recovery — across millions of active subscriptions.</p>
+      </div>
+      <div class="stack">
+        <span>UPI AutoPay</span><span>Microservices</span><span>gRPC</span><span>Java</span><span>Pub/Sub</span>
+      </div>
+    </div>
+
+    <div class="role">
+      <div class="when">Oct 2014 — Jan 2022</div>
+      <div class="body">
+        <h3>Tech Lead</h3>
+        <div class="co">HCL Technologies</div>
+        <p>Seven years across HealthCare and FinTech engagements — Java Spring Boot services, IoT and web platforms. Grew from senior engineer into a tech lead role responsible for design, delivery and team mentorship.</p>
+      </div>
+      <div class="stack">
+        <span>Java</span><span>Spring Boot</span><span>HealthCare</span><span>FinTech</span>
+      </div>
+    </div>
+
+    <div class="role">
+      <div class="when">Jul 2011 — Sep 2014</div>
+      <div class="body">
+        <h3>Application Developer</h3>
+        <div class="co">CSC (Computer Sciences Corporation)</div>
+        <p>PayPal–eBay payment integrations. Built and shipped Gateway and Merchant modules — first deep exposure to payments-grade reliability and integration design.</p>
+      </div>
+      <div class="stack">
+        <span>PayPal</span><span>eBay</span><span>Java</span><span>Payments</span>
+      </div>
+    </div>
+
+    <div class="role">
+      <div class="when">Dec 2009 — May 2011</div>
+      <div class="body">
+        <h3>Senior Software Engineer</h3>
+        <div class="co">Siemens IT</div>
+        <p>Angioplasty / angiogram software for medical imaging systems. The discipline of writing software where wrong is not an option — a foundation that still shapes how I think about correctness.</p>
+      </div>
+      <div class="stack">
+        <span>Medical Imaging</span><span>C++</span><span>Real-time</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== PROJECTS ============================== -->
+<section class="s" id="work">
+  <header>
+    <div class="nm">
+      <span class="section-num">04 — Selected work</span>
+    </div>
+    <h2>Five projects that show how I think.</h2>
+  </header>
+
+  <div class="projects">
+
+    <article class="project">
+      <div class="idx">01</div>
+      <div class="head">
+        <h3>Multi-agent scrum system, built from the metal up.</h3>
+        <div class="tag"><span class="acc">Personal · Claude Code</span> · 2024–25</div>
+      </div>
+      <div class="body">
+        <p>
+          A production-grade multi-agent scrum ecosystem — five specialised agents (PO, SM, Backend, Frontend, QA)
+          coordinating autonomously through SQLite shared state, with Linear integration for sprint tracking. <strong>No frameworks.</strong>
+          The PRD hardening pipeline runs three agents (PO-1, PR-1, SM-1) in automated feedback loops with a hard cap of three
+          revision cycles before human escalation. All orchestration logic lives in skill files — not procedural Python.
+        </p>
+        <p style="color:var(--bone-3);font-size:14px;margin-top:6px">
+          Demonstrates hands-on agentic system design, MCP integration, and the ability to encode complex
+          engineering workflows as autonomous agent pipelines.
+        </p>
+        <div class="stack">
+          <span>Claude Code</span><span>Claude Sonnet</span><span>MCP</span><span>SQLite</span><span>Linear</span><span>Python</span><span>Spring Boot</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="project">
+      <div class="idx">02</div>
+      <div class="head">
+        <h3>GCP migration of the CAMS&nbsp;AI mutual&nbsp;fund platform.</h3>
+        <div class="tag"><span class="acc">CAMS AI · Engineering Manager</span> · 2024–25</div>
+      </div>
+      <div class="body">
+        <p>
+          Full re-architecture of the Mutual Fund RTA platform onto Google Cloud under aggressive timelines and
+          zero tolerance for data loss. GKE, Vertex AI, Pub/Sub and BigQuery — with a parallel validation system
+          built specifically to keep legacy and new architecture continuously aligned through the transition.
+          <strong>99.99% uptime across the entire migration window. Zero data discrepancy.</strong>
+        </p>
+        <p style="color:var(--bone-3);font-size:14px;margin-top:6px">
+          Now powers AI inference pipelines and serves millions of daily FinTech transactions with elastic scalability.
+          Cross-functional coordination across engineering, product, and ops.
+        </p>
+        <div class="stack">
+          <span>GCP</span><span>GKE</span><span>Vertex AI</span><span>Pub/Sub</span><span>BigQuery</span><span>GraphQL</span><span>gRPC</span><span>Apollo</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="project">
+      <div class="idx">03</div>
+      <div class="head">
+        <h3>Legacy codebase modernisation pipeline.</h3>
+        <div class="tag"><span class="acc">Personal · Claude Code</span> · 2025</div>
+      </div>
+      <div class="body">
+        <p>
+          A multi-stage agentic pipeline addressing one of enterprise engineering's hardest problems — legacy modernisation at scale.
+          Ingests legacy markdown and PRD DOCX files, merges them into a unified superset specification, auto-generates
+          Java Spring Boot APIs, creates Playwright test suites, and runs an automated bug-fix feedback loop.
+          <strong>No manual intervention between stages.</strong>
+        </p>
+        <p style="color:var(--bone-3);font-size:14px;margin-top:6px">
+          Built to address the real constraints: SQL defects in legacy specs, PRD-vs-tech-spec drift, and the cost of
+          human review bottlenecks. Directly transferable to any enterprise modernisation mandate.
+        </p>
+        <div class="stack">
+          <span>Claude Code</span><span>Spring Boot</span><span>Playwright</span><span>MCP</span><span>AlloyDB</span><span>GCP</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="project">
+      <div class="idx">04</div>
+      <div class="head">
+        <h3>Engineering management as an agent stack.</h3>
+        <div class="tag"><span class="acc">Personal · CrewAI</span> · 2024</div>
+      </div>
+      <div class="body">
+        <p>
+          A five-agent system that automates the highest-toil parts of engineering management. Agents handle daily commit analysis,
+          blocker detection, PRD analysis, QA bug triage and weekly manager-mail composition — integrated with GitLab REST API and
+          Microsoft Graph API for Outlook and Teams. The system surfaces signal from noise across the engineering cycle and drafts
+          communications automatically.
+        </p>
+        <p style="color:var(--bone-3);font-size:14px;margin-top:6px">
+          The rare signal that separates AI-native leaders from those who merely manage AI teams.
+        </p>
+        <div class="stack">
+          <span>CrewAI</span><span>GitLab API</span><span>MS Graph API</span><span>Outlook</span><span>Teams</span><span>Python</span><span>FastAPI</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="project">
+      <div class="idx">05</div>
+      <div class="head">
+        <h3>UPI AutoPay subscription platform.</h3>
+        <div class="tag"><span class="acc">Pine Labs · Module Lead</span> · 2022–23</div>
+      </div>
+      <div class="body">
+        <p>
+          End-to-end design and delivery of a high-volume UPI AutoPay subscription system integrating UPI Intent and Collect flows
+          with the Plural Payment Gateway. The platform manages the full subscription lifecycle — mandate creation, intent resolution,
+          collect requests, recurring execution and failure recovery — across millions of active subscriptions.
+        </p>
+        <p style="color:var(--bone-3);font-size:14px;margin-top:6px">
+          99.99% reliability with zero-downtime deployments in a compliance-grade FinTech environment. Cross-team delivery
+          across frontend, product and compliance.
+        </p>
+        <div class="stack">
+          <span>UPI AutoPay</span><span>Java</span><span>gRPC</span><span>REST</span><span>Pub/Sub</span><span>BigQuery</span><span>Microservices</span>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ============================== SKILLS ============================== -->
+<section class="s" id="skills">
+  <header>
+    <div class="nm">
+      <span class="section-num">05 — Capabilities</span>
+    </div>
+    <h2>What I bring into the room.</h2>
+  </header>
+
+  <div class="skills">
+    <div class="skill-col">
+      <h5>Leadership</h5>
+      <ul>
+        <li class="lead">Lead from architecture.</li>
+        <li>Engineering management</li>
+        <li>System design reviews</li>
+        <li>Cross-functional delivery</li>
+        <li>Mentorship &amp; team growth</li>
+        <li>Migration planning</li>
+        <li>Hiring &amp; technical interviewing</li>
+      </ul>
+    </div>
+    <div class="skill-col">
+      <h5>AI &amp; Agents</h5>
+      <ul>
+        <li class="lead">AI-native by default.</li>
+        <li>Anthropic Claude · Claude Code</li>
+        <li>MCP integration</li>
+        <li>Multi-agent orchestration</li>
+        <li>CrewAI</li>
+        <li>Vertex AI inference pipelines</li>
+        <li>Prompt &amp; skill engineering</li>
+      </ul>
+    </div>
+    <div class="skill-col">
+      <h5>Backend &amp; Cloud</h5>
+      <ul>
+        <li class="lead">Production at scale.</li>
+        <li>Java · Spring Boot</li>
+        <li>GraphQL · gRPC · REST</li>
+        <li>GCP · GKE · Pub/Sub</li>
+        <li>BigQuery · AlloyDB · MySQL</li>
+        <li>Event-driven architecture</li>
+        <li>Microservices</li>
+      </ul>
+    </div>
+    <div class="skill-col">
+      <h5>Domain</h5>
+      <ul>
+        <li class="lead">FinTech is home turf.</li>
+        <li>Payments &amp; UPI</li>
+        <li>Mutual Funds · RTA</li>
+        <li>Subscription &amp; mandate systems</li>
+        <li>PayPal · eBay integrations</li>
+        <li>HealthCare &amp; medical imaging</li>
+        <li>Compliance-grade delivery</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== CONTACT ============================== -->
+<section class="contact" id="contact">
+  <span class="section-num" style="display:block;margin-bottom:30px">06 — Get in touch</span>
+
+  <h2>Let's build something <em>worth shipping.</em></h2>
+
+  <div class="row">
+    <div>
+      <p style="font-size:18px;line-height:1.65;color:var(--bone-2);max-width:50ch;margin:0;text-wrap:pretty">
+        Open to conversations with C-suites, executive recruiters and fellow engineering leaders —
+        on AI platform leadership, FinTech modernisation, and how to lead engineering organisations
+        in the AI era.
+      </p>
+      <div class="actions" style="margin-top:34px">
+        <a class="primary" href="mailto:rajeshkamalanathan486@gmail.com">
+          Email me
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a class="ghost" href="mailto:rajeshkamalanathan486@gmail.com?subject=30-min%20intro%20call">Book a 30-min intro call</a>
+      </div>
+    </div>
+
+    <div class="links">
+      <a href="mailto:rajeshkamalanathan486@gmail.com">
+        <span class="label">Email</span>
+        <span class="val">rajeshkamalanathan486@gmail.com</span>
+      </a>
+      <a href="https://www.linkedin.com/in/rajesh-kamalanathan/" target="_blank" rel="noopener">
+        <span class="label">LinkedIn</span>
+        <span class="val">in/rajesh-kamalanathan ↗</span>
+      </a>
+      <a href="https://github.com/rajeshk486" target="_blank" rel="noopener">
+        <span class="label">GitHub</span>
+        <span class="val">@rajeshk486 ↗</span>
+      </a>
+      <a href="tel:+918870572622">
+        <span class="label">Phone</span>
+        <span class="val">+91 88705 72622</span>
+      </a>
+      <a href="#" onclick="return false">
+        <span class="label">Based</span>
+        <span class="val">Chennai, Tamil Nadu, India</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 Rajesh Kamalanathan</span>
+  <span>Built with Claude · Last updated April 2026</span>
+</footer>
+
+<script>
+  // sticky nav border
+  const nav = document.getElementById('topnav');
+  const onScroll = () => {
+    if (window.scrollY > 12) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  };
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  // reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      const id = a.getAttribute('href');
+      if (id.length < 2) return;
+      const t = document.querySelector(id);
+      if (!t) return;
+      e.preventDefault();
+      window.scrollTo({top: t.getBoundingClientRect().top + window.scrollY - 60, behavior:'smooth'});
+      history.replaceState(null,'',id);
+    });
+  });
+</script>
+
+</body>
+</html>
